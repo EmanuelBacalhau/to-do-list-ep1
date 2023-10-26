@@ -24,6 +24,8 @@ model List {
   id   String @id @default(uuid()) @map("_id")
   name String
 
+  taks Task[]
+
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
@@ -34,7 +36,10 @@ model Task {
   id          String  @id @default(uuid()) @map("_id")
   title       String
   description String
+  list_id     String
   status      Boolean @default(false)
+
+  list List @relation(fields: [list_id], references: [id])
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
