@@ -14,7 +14,7 @@ interface IRequest {
 }
 
 class UpdateUserService {
-  async execute({ id, data }: IRequest) {
+  async execute({ id, data }: IRequest): Promise<void> {
     const isUserExists = await prisma.user.findUnique({
       where: { id },
     })
