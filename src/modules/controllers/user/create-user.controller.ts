@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 
 import { z } from 'zod'
+
 import createUserService from '../../services/user/create-user.service'
 
 class CreateUserController {
