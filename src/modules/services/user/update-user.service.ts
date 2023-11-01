@@ -1,3 +1,4 @@
+import { hashSync } from 'bcrypt'
 import { AppError } from '../../../errors/AppError'
 import { prisma } from '../../../libs/prisma'
 
@@ -27,7 +28,10 @@ class UpdateUserService {
       where: {
         id,
       },
-      data,
+      data: {
+        ...data,
+        password: data.password ? hashSync(data.password, 10) : undefined,
+      },
     })
   }
 }
