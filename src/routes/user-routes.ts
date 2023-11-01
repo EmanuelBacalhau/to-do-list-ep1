@@ -4,10 +4,11 @@ import detailsUserController from '../modules/controllers/user/details-user.cont
 import createUserController from '../modules/controllers/user/create-user.controller'
 import updateUserController from '../modules/controllers/user/update-user.controller'
 import deleteUserController from '../modules/controllers/user/delete-user.controller'
+import { isAuthenticated } from '../middlewares/is-authenticated'
 
 export const userRouter = Router()
 
-userRouter.get('/users/:id', detailsUserController.handle)
 userRouter.post('/users/register', createUserController.handle)
-userRouter.put('/users/:id', updateUserController.handle)
-userRouter.delete('/users/:id', deleteUserController.handle)
+userRouter.get('/users/:id', isAuthenticated, detailsUserController.handle)
+userRouter.put('/users/:id', isAuthenticated, updateUserController.handle)
+userRouter.delete('/users/:id', isAuthenticated, deleteUserController.handle)

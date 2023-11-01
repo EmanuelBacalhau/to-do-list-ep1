@@ -3,10 +3,11 @@ import createTaskController from '../modules/controllers/task/create-task.contro
 import detailsTaskController from '../modules/controllers/task/details-task.controller'
 import updateTaskController from '../modules/controllers/task/update-task.controller'
 import deleteTaskController from '../modules/controllers/task/delete-task.controller'
+import { isAuthenticated } from '../middlewares/is-authenticated'
 
 export const taskRouter = Router()
 
-taskRouter.post('/tasks/register', createTaskController.handle)
-taskRouter.get('/tasks/:id', detailsTaskController.handle)
-taskRouter.put('/tasks/:id', updateTaskController.handle)
-taskRouter.delete('/tasks/:id', deleteTaskController.handle)
+taskRouter.post('/tasks/register', isAuthenticated, createTaskController.handle)
+taskRouter.get('/tasks/:id', isAuthenticated, detailsTaskController.handle)
+taskRouter.put('/tasks/:id', isAuthenticated, updateTaskController.handle)
+taskRouter.delete('/tasks/:id', isAuthenticated, deleteTaskController.handle)
