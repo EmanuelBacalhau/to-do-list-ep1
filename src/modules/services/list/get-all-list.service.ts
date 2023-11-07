@@ -1,7 +1,11 @@
 import { prisma } from '../../../libs/prisma'
 
+interface IRequest {
+  id: string
+}
+
 class GetAllListService {
-  async execute() {
+  async execute({ id }: IRequest) {
     const lists = await prisma.list.findMany({
       select: {
         id: true,
@@ -9,6 +13,9 @@ class GetAllListService {
         created_at: true,
         updated_at: true,
       },
+      where: {
+        user_id: id
+      }
     })
 
     return lists
