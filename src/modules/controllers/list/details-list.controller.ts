@@ -3,14 +3,10 @@ import { z } from 'zod'
 import detailsListService from '../../services/list/details-list.service'
 
 class DetailsListController {
-  async handle(req: Request, res: Response) {
-    const detailsListSchema = z.object({
-      id: z.string().uuid(),
-    })
+  async handle(req: Request, res: Response) { 
+    const id = req.id
 
-    const data = detailsListSchema.parse(req.params)
-
-    const list = await detailsListService.execute(data)
+    const list = await detailsListService.execute({ id })
 
     return res.status(200).json(list)
   }

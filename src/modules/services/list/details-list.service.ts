@@ -10,7 +10,7 @@ class DetailsListService {
   async execute({ id }: IRequest): Promise<List> {
     const isListExists = await prisma.list.findUnique({
       where: { id },
-      include: { taks: true },
+      include: { tasks: true },
     })
 
     if (!isListExists) {
