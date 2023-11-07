@@ -9,6 +9,6 @@ import { isAuthenticated } from '../middlewares/is-authenticated'
 export const userRouter = Router()
 
 userRouter.post('/users/register', createUserController.handle)
-userRouter.get('/users/:id', isAuthenticated, detailsUserController.handle)
+userRouter.get('/users', isAuthenticated, detailsUserController.handle)
 userRouter.put('/users/:id', isAuthenticated, updateUserController.handle)
 userRouter.delete('/users/:id', isAuthenticated, deleteUserController.handle)
