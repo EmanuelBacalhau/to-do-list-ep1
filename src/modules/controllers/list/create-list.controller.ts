@@ -6,12 +6,13 @@ class CreateListController {
   async handle(req: Request, res: Response) {
     const createListSchema = z.object({
       name: z.string(),
-      user_id: z.string().uuid(),
     })
 
-    const data = createListSchema.parse(req.body)
+    const id = req.id
 
-    await createListService.execute(data)
+    const { name } = createListSchema.parse(req.body)
+
+    await createListService.execute({ name, user_id: id })
 
     return res.status(201).end()
   }
