@@ -10,12 +10,13 @@ class GetAllListService {
       select: {
         id: true,
         name: true,
+        description: true,
         created_at: true,
         updated_at: true,
       },
       where: {
-        user_id: id
-      }
+        user_id: id,
+      },
     })
 
     return lists
