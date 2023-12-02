@@ -11,5 +11,9 @@ export const taskRouter = Router()
 taskRouter.post('/tasks/register', isAuthenticated, createTaskController.handle)
 taskRouter.get('/tasks/:id', isAuthenticated, detailsTaskController.handle)
 taskRouter.put('/tasks/:id', isAuthenticated, updateTaskController.handle)
-taskRouter.put('/tasks/:id/conclude', isAuthenticated, concludeTaskController.handle)
+taskRouter.put(
+  '/tasks/:id/conclude',
+  isAuthenticated,
+  concludeTaskController.handle,
+)
 taskRouter.delete('/tasks/:id', isAuthenticated, deleteTaskController.handle)
