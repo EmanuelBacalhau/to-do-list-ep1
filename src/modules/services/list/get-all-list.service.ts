@@ -13,6 +13,11 @@ class GetAllListService {
         description: true,
         created_at: true,
         updated_at: true,
+        tasks: {
+          select: {
+            status: true,
+          },
+        },
       },
       where: {
         user_id: id,

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { z } from 'zod'
-import concludeTaskService from '../../services/task/conclude-task.service'
+import uncloseTaskService from '../../services/task/unclose-task.service'
 
-class ConcludeTaskController {
+class UncloseTaskController {
   async handle(req: Request, res: Response) {
     const concludeSchema = z.object({
       id: z.string().uuid(),
@@ -10,10 +10,10 @@ class ConcludeTaskController {
 
     const { id } = concludeSchema.parse(req.params)
 
-    await concludeTaskService.execute({ id })
+    await uncloseTaskService.execute({ id })
 
     return res.status(204).end()
   }
 }
 
-export default new ConcludeTaskController()
+export default new UncloseTaskController()
