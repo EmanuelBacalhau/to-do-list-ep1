@@ -17,6 +17,12 @@ class DeleteListService {
       throw new AppError('List not found', 404)
     }
 
+    await prisma.task.deleteMany({
+      where: {
+        list_id: isListExists.id,
+      },
+    })
+
     await prisma.list.delete({
       where: {
         id,
